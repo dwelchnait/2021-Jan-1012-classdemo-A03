@@ -68,13 +68,22 @@ namespace ConditionStatements
 
             }
 
+
+            //Nested If algorithm (aka logic, design, plan,...)
+            //a nested if is an if statement within an if statement
+
+            //Basic Programming Problem 5: Who Won
+
             string inputTemp = "";
             string racerName1;                          //just declared
             string racerName2, racerName3;              //just declared
             double racerTime1 = 0.0;                    //declared and assigned
             double racerTime2 = 0.0, racerTime3 = 0.0;  //declared and assigned
             string firstPlace, secondPlace, thirdPlace; //just declared
+
+            //this is technically legal in C#
             firstPlace = secondPlace = thirdPlace = ""; //variables assigned same value
+           
             Console.Write("Enter racer 1 name:\t");
             racerName1 = Console.ReadLine();
             Console.Write("Enter racer 1 time in minutes (12.3):\t");
@@ -94,7 +103,62 @@ namespace ConditionStatements
             //conditional logic 
             //a Nested IF
             //an IF within another IF
+
+            if ( racerTime1 < racerTime2)
+            {
+                //racer1 faster than racer2
+                firstPlace = $"{racerName1} ({racerTime1})";
+                secondPlace = $"{racerName2} ({racerTime2})";
+                if (racerTime1 < racerTime3)
+                {
+                    if (racerTime2 < racerTime3)
+                    {
+                        thirdPlace = $"{racerName3} ({racerTime3})";
+                    }
+                    else
+                    {
+                        //racer3 faster than racer2
+                        thirdPlace = secondPlace;
+                        secondPlace = $"{racerName3} ({racerTime3})";
+                    }
+                }
+                else
+                {
+                    //racer3 is faster than racer1
+                    thirdPlace = secondPlace;
+                    secondPlace = firstPlace;
+                    firstPlace = $"{racerName3} ({racerTime3})";
+                }
+            }
+            else
+            {
+                //racer2 faster than racer1
+                firstPlace = $"{racerName2} ({racerTime2})";
+                secondPlace = $"{racerName1} ({racerTime1})";
+
+                if (racerTime2 < racerTime3)
+                {
+                    if (racerTime1 < racerTime3)
+                    {
+                        thirdPlace = $"{racerName3} ({racerTime3})";
+                    }
+                    else
+                    {
+                        thirdPlace = secondPlace;
+                        secondPlace = $"{racerName3} ({racerTime3})";
+                    }
+                }
+                else
+                {
+                    //racer3 is faster than racer1
+                    thirdPlace = secondPlace;
+                    secondPlace = firstPlace;
+                    firstPlace = $"{racerName3} ({racerTime3})";
+                }
+
+            }//eof outter most if of decision structure
            
+            //next executable statement
             Console.WriteLine($"First place {firstPlace}\n");
             Console.WriteLine($"Second place {secondPlace}\n");
             Console.WriteLine($"Third place {thirdPlace}\n");
