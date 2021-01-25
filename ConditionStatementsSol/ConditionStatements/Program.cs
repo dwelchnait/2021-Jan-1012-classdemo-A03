@@ -67,6 +67,37 @@ namespace ConditionStatements
                 Console.WriteLine("The is the next statement after the two way if");
 
             }
+
+            string inputTemp = "";
+            string racerName1;                          //just declared
+            string racerName2, racerName3;              //just declared
+            double racerTime1 = 0.0;                    //declared and assigned
+            double racerTime2 = 0.0, racerTime3 = 0.0;  //declared and assigned
+            string firstPlace, secondPlace, thirdPlace; //just declared
+            firstPlace = secondPlace = thirdPlace = ""; //variables assigned same value
+            Console.Write("Enter racer 1 name:\t");
+            racerName1 = Console.ReadLine();
+            Console.Write("Enter racer 1 time in minutes (12.3):\t");
+            inputTemp = Console.ReadLine();
+            racerTime1 = double.Parse(inputTemp);
+            Console.Write("Enter racer 2 name:\t");
+            racerName2 = Console.ReadLine();
+            Console.Write("Enter racer 2 time in minutes (12.3):\t");
+            //inputTemp = Console.ReadLine();
+            racerTime2 = double.Parse(Console.ReadLine());
+            Console.Write("Enter racer 3 name:\t");
+            racerName3 = Console.ReadLine();
+            Console.Write("Enter racer 3 time in minutes (12.3):\t");
+            inputTemp = Console.ReadLine();
+            racerTime3 = double.Parse(inputTemp);
+
+            //conditional logic 
+            //a Nested IF
+            //an IF within another IF
+           
+            Console.WriteLine($"First place {firstPlace}\n");
+            Console.WriteLine($"Second place {secondPlace}\n");
+            Console.WriteLine($"Third place {thirdPlace}\n");
         }
     }
 }
