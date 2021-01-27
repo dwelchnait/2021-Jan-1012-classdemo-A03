@@ -28,14 +28,14 @@ namespace ConditionStatements
             //Console.WriteLine($"{number1} + {number2} = {answer}" +
             //    $" your answer is {(number1 + number2) == answer}");
 
-            //the one--way if statement
-            //has only a true path
-            double radius = 3.5;
-            if (radius > 0)
-            {
-                double area = Math.Pow(radius, Math.PI);
-                Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}");
-            }
+            ////the one--way if statement
+            ////has only a true path
+            //double radius = 3.5;
+            //if (radius > 0)
+            //{
+            //    double area = Math.Pow(radius, Math.PI);
+            //    Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}");
+            //}
 
             ////a two-way if statement
             ////has a true path and a false path
@@ -193,6 +193,110 @@ namespace ConditionStatements
             //    }
             //}
 
+            ////if - else if structure
+
+            int testScore = 25;
+            ////code using NESTED IF
+            //if (testScore < 50)
+            //{
+            //    Console.WriteLine("Your grade is F.");
+            //}
+            //else
+            //{
+            //    if (testScore < 60)
+            //    {
+            //        Console.WriteLine("Your grade is D.");
+            //    }
+            //    else
+            //    {
+            //        if (testScore < 70)
+            //        {
+            //            Console.WriteLine("Your grade is C.");
+            //        }
+            //        else
+            //        {
+            //            if (testScore < 80)
+            //            {
+            //                Console.WriteLine("Your grade is B.");
+            //            }
+            //            else
+            //            {
+            //                    Console.WriteLine("Your grade is A.");
+            //            }
+            //        }
+            //    }
+            //}//eo if structure
+
+            ////coded using IF - ELSE IF
+            //if (testScore < 50)
+            //{
+            //    Console.WriteLine("Your grade is F.");
+            //}//eo coding block 50
+            //else if (testScore < 60)
+            //{
+            //    Console.WriteLine("Your grade is D.");
+            //}//eo coding block 60
+            //else if (testScore < 70)
+            //{
+            //    Console.WriteLine("Your grade is C.");
+            //}//eo coding block 70
+            //else if (testScore < 80)
+            //{
+            //    Console.WriteLine("Your grade is B.");
+            //}//eo coding block 80
+            //else
+            //{
+            //    Console.WriteLine("Your grade is A.");
+            //}//eo IF structure / eo coding block 80+
+
+            //Weather Translation
+            int FahrenheitTemperature = 75;
+            int CelsiusTemperature = 0;
+
+            CelsiusTemperature = (FahrenheitTemperature - 32) * 5 / 9;
+            
+            if (CelsiusTemperature < 0)
+            {
+                //below 0
+                Console.WriteLine("It's freezing out");
+            }
+            else if(CelsiusTemperature <= 15)
+            {
+                // 0 (implied) to 15
+                Console.WriteLine("Wear a jacket");
+            }
+            else if (CelsiusTemperature <= 30)
+            {
+                //  16 (implied) to 30
+                Console.WriteLine("It's a lovely day");
+            }
+            else
+            {
+                // over 30
+                    Console.WriteLine("It's finally time for shorts");
+            }
+
+            //recode as a range
+            if (CelsiusTemperature < 0)
+            {
+                //below 0
+                Console.WriteLine("It's freezing out");
+            }
+            else if ((CelsiusTemperature >= 0) && (CelsiusTemperature <= 15))
+            {
+                //0 (explictive) to 15
+                Console.WriteLine("Wear a jacket");
+            }
+            else if ((CelsiusTemperature >= 16) && (CelsiusTemperature <= 30))
+            {
+                // 16  (explicitive) to 30
+                Console.WriteLine("It's a lovely day");
+            }
+            else
+            {
+                // over 30
+                Console.WriteLine("It's finally time for shorts");
+            }
         }//eoMain
     }//eop
 }//eon
