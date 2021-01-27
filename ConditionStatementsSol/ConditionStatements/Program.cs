@@ -34,134 +34,165 @@ namespace ConditionStatements
             if (radius > 0)
             {
                 double area = Math.Pow(radius, Math.PI);
-                Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area,2)}");
+                Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}");
             }
 
-            //a two-way if statement
-            //has a true path and a false path
-            //the true path is coded first
-            //the false path is code second
-            //the true path coding block is separated from the false path
-            //      coding block by the key word -> else
-            if (radius > 0)
-            {
-                double area = Math.Pow(radius, Math.PI);
-                if (area >= 100.0)
-                {
-                    //true path
-                    //executed when the condition resolves to the boolean value TRUE
-                    Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}. Your circle is large enough.");
+            ////a two-way if statement
+            ////has a true path and a false path
+            ////the true path is coded first
+            ////the false path is code second
+            ////the true path coding block is separated from the false path
+            ////      coding block by the key word -> else
+            //if (radius > 0)
+            //{
+            //    double area = Math.Pow(radius, Math.PI);
+            //    if (area >= 100.0)
+            //    {
+            //        //true path
+            //        //executed when the condition resolves to the boolean value TRUE
+            //        Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}. Your circle is large enough.");
 
-                    //at the end of this TRUE coding block you exit to the
-                    //   next statement AFTER the end of the if
-                }
-                else
-                {
-                    //false  path
-                    //executed when the condition resolves to the boolean value FALSE
-                    Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}. Increase the size of the radius");
+            //        //at the end of this TRUE coding block you exit to the
+            //        //   next statement AFTER the end of the if
+            //    }
+            //    else
+            //    {
+            //        //false  path
+            //        //executed when the condition resolves to the boolean value FALSE
+            //        Console.WriteLine($"The area of a cricle with a radius of {radius} is {Math.Round(area, 2)}. Increase the size of the radius");
 
-                    //at the end of this FALSE coding block you exit to the
-                    //   next statement AFTER the end of the if
-                } //this closing bracket indicates the end of the two way if
-                Console.WriteLine("The is the next statement after the two way if");
+            //        //at the end of this FALSE coding block you exit to the
+            //        //   next statement AFTER the end of the if
+            //    } //this closing bracket indicates the end of the two way if
+            //    Console.WriteLine("The is the next statement after the two way if");
 
-            }
+            //}
 
 
-            //Nested If algorithm (aka logic, design, plan,...)
-            //a nested if is an if statement within an if statement
+            ////Nested If algorithm (aka logic, design, plan,...)
+            ////a nested if is an if statement within an if statement
 
-            //Basic Programming Problem 5: Who Won
+            ////Basic Programming Problem 5: Who Won
 
-            string inputTemp = "";
-            string racerName1;                          //just declared
-            string racerName2, racerName3;              //just declared
-            double racerTime1 = 0.0;                    //declared and assigned
-            double racerTime2 = 0.0, racerTime3 = 0.0;  //declared and assigned
-            string firstPlace, secondPlace, thirdPlace; //just declared
+            //string inputTemp = "";
+            //string racerName1;                          //just declared
+            //string racerName2, racerName3;              //just declared
+            //double racerTime1 = 0.0;                    //declared and assigned
+            //double racerTime2 = 0.0, racerTime3 = 0.0;  //declared and assigned
+            //string firstPlace, secondPlace, thirdPlace; //just declared
 
-            //this is technically legal in C#
-            firstPlace = secondPlace = thirdPlace = ""; //variables assigned same value
-           
-            Console.Write("Enter racer 1 name:\t");
-            racerName1 = Console.ReadLine();
-            Console.Write("Enter racer 1 time in minutes (12.3):\t");
-            inputTemp = Console.ReadLine();
-            racerTime1 = double.Parse(inputTemp);
-            Console.Write("Enter racer 2 name:\t");
-            racerName2 = Console.ReadLine();
-            Console.Write("Enter racer 2 time in minutes (12.3):\t");
+            ////this is technically legal in C#
+            //firstPlace = secondPlace = thirdPlace = ""; //variables assigned same value
+
+            //Console.Write("Enter racer 1 name:\t");
+            //racerName1 = Console.ReadLine();
+            //Console.Write("Enter racer 1 time in minutes (12.3):\t");
             //inputTemp = Console.ReadLine();
-            racerTime2 = double.Parse(Console.ReadLine());
-            Console.Write("Enter racer 3 name:\t");
-            racerName3 = Console.ReadLine();
-            Console.Write("Enter racer 3 time in minutes (12.3):\t");
-            inputTemp = Console.ReadLine();
-            racerTime3 = double.Parse(inputTemp);
+            //racerTime1 = double.Parse(inputTemp);
+            //Console.Write("Enter racer 2 name:\t");
+            //racerName2 = Console.ReadLine();
+            //Console.Write("Enter racer 2 time in minutes (12.3):\t");
+            ////inputTemp = Console.ReadLine();
+            //racerTime2 = double.Parse(Console.ReadLine());
+            //Console.Write("Enter racer 3 name:\t");
+            //racerName3 = Console.ReadLine();
+            //Console.Write("Enter racer 3 time in minutes (12.3):\t");
+            //inputTemp = Console.ReadLine();
+            //racerTime3 = double.Parse(inputTemp);
 
-            //conditional logic 
-            //a Nested IF
-            //an IF within another IF
+            ////conditional logic 
+            ////a Nested IF
+            ////an IF within another IF
 
-            if ( racerTime1 < racerTime2)
-            {
-                //racer1 faster than racer2
-                firstPlace = $"{racerName1} ({racerTime1})";
-                secondPlace = $"{racerName2} ({racerTime2})";
-                if (racerTime1 < racerTime3)
-                {
-                    if (racerTime2 < racerTime3)
-                    {
-                        thirdPlace = $"{racerName3} ({racerTime3})";
-                    }
-                    else
-                    {
-                        //racer3 faster than racer2
-                        thirdPlace = secondPlace;
-                        secondPlace = $"{racerName3} ({racerTime3})";
-                    }
-                }
-                else
-                {
-                    //racer3 is faster than racer1
-                    thirdPlace = secondPlace;
-                    secondPlace = firstPlace;
-                    firstPlace = $"{racerName3} ({racerTime3})";
-                }
-            }
-            else
-            {
-                //racer2 faster than racer1
-                firstPlace = $"{racerName2} ({racerTime2})";
-                secondPlace = $"{racerName1} ({racerTime1})";
+            //if (racerTime1 < racerTime2)
+            //{
+            //    //racer1 faster than racer2
+            //    firstPlace = $"{racerName1} ({racerTime1})";
+            //    secondPlace = $"{racerName2} ({racerTime2})";
+            //    if (racerTime1 < racerTime3)
+            //    {
+            //        if (racerTime2 < racerTime3)
+            //        {
+            //            thirdPlace = $"{racerName3} ({racerTime3})";
+            //        }
+            //        else
+            //        {
+            //            //racer3 faster than racer2
+            //            thirdPlace = secondPlace;
+            //            secondPlace = $"{racerName3} ({racerTime3})";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //racer3 is faster than racer1
+            //        thirdPlace = secondPlace;
+            //        secondPlace = firstPlace;
+            //        firstPlace = $"{racerName3} ({racerTime3})";
+            //    }
+            //}
+            //else
+            //{
+            //    //racer2 faster than racer1
+            //    firstPlace = $"{racerName2} ({racerTime2})";
+            //    secondPlace = $"{racerName1} ({racerTime1})";
 
-                if (racerTime2 < racerTime3)
-                {
-                    if (racerTime1 < racerTime3)
-                    {
-                        thirdPlace = $"{racerName3} ({racerTime3})";
-                    }
-                    else
-                    {
-                        thirdPlace = secondPlace;
-                        secondPlace = $"{racerName3} ({racerTime3})";
-                    }
-                }
-                else
-                {
-                    //racer3 is faster than racer1
-                    thirdPlace = secondPlace;
-                    secondPlace = firstPlace;
-                    firstPlace = $"{racerName3} ({racerTime3})";
-                }
+            //    if (racerTime2 < racerTime3)
+            //    {
+            //        if (racerTime1 < racerTime3)
+            //        {
+            //            thirdPlace = $"{racerName3} ({racerTime3})";
+            //        }
+            //        else
+            //        {
+            //            thirdPlace = secondPlace;
+            //            secondPlace = $"{racerName3} ({racerTime3})";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //racer3 is faster than racer1
+            //        thirdPlace = secondPlace;
+            //        secondPlace = firstPlace;
+            //        firstPlace = $"{racerName3} ({racerTime3})";
+            //    }
 
-            }//eof outter most if of decision structure
-           
-            //next executable statement
-            Console.WriteLine($"First place {firstPlace}\n");
-            Console.WriteLine($"Second place {secondPlace}\n");
-            Console.WriteLine($"Third place {thirdPlace}\n");
-        }
-    }
-}
+            //}//eof outter most if of decision structure
+
+            ////next executable statement
+            //Console.WriteLine($"First place {firstPlace}\n");
+            //Console.WriteLine($"Second place {secondPlace}\n");
+            //Console.WriteLine($"Third place {thirdPlace}\n");
+
+            ////Loan example
+            ////Nested If
+
+            //const double MINWAGEAMOUNT = 30000.00;
+            //const int MINYEARSWORKED = 2;
+            //double wageAmount = 35000.00;
+            //int yearWorked = 3;
+            //if (wageAmount < MINWAGEAMOUNT)
+            //{
+            //    if (yearWorked < MINYEARSWORKED)
+            //    {
+            //        Console.WriteLine("Not qualified for loan due to wages and years worked");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Not qualified for loan due to low wages");
+            //    }
+            //}
+            //else
+            //{
+            //    if (yearWorked < MINYEARSWORKED)
+            //    {
+            //        Console.WriteLine("Not qualified for loan due to  years worked");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("You qualified for loan");
+            //    }
+            //}
+
+        }//eoMain
+    }//eop
+}//eon
