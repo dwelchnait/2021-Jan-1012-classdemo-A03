@@ -249,53 +249,104 @@ namespace ConditionStatements
             //    Console.WriteLine("Your grade is A.");
             //}//eo IF structure / eo coding block 80+
 
-            //Weather Translation
-            int FahrenheitTemperature = 75;
-            int CelsiusTemperature = 0;
+            ////Weather Translation
+            //int FahrenheitTemperature = 75;
+            //int CelsiusTemperature = 0;
 
-            CelsiusTemperature = (FahrenheitTemperature - 32) * 5 / 9;
-            
-            if (CelsiusTemperature < 0)
+            //CelsiusTemperature = (FahrenheitTemperature - 32) * 5 / 9;
+
+            //if (CelsiusTemperature < 0)
+            //{
+            //    //below 0
+            //    Console.WriteLine("It's freezing out");
+            //}
+            //else if(CelsiusTemperature <= 15)
+            //{
+            //    // 0 (implied) to 15
+            //    Console.WriteLine("Wear a jacket");
+            //}
+            //else if (CelsiusTemperature <= 30)
+            //{
+            //    //  16 (implied) to 30
+            //    Console.WriteLine("It's a lovely day");
+            //}
+            //else
+            //{
+            //    // over 30
+            //        Console.WriteLine("It's finally time for shorts");
+            //}
+
+            ////recode as a range
+            //if (CelsiusTemperature < 0)
+            //{
+            //    //below 0
+            //    Console.WriteLine("It's freezing out");
+            //}
+            //else if ((CelsiusTemperature >= 0) && (CelsiusTemperature <= 15))
+            //{
+            //    //0 (explictive) to 15
+            //    Console.WriteLine("Wear a jacket");
+            //}
+            //else if ((CelsiusTemperature >= 16) && (CelsiusTemperature <= 30))
+            //{
+            //    // 16  (explicitive) to 30
+            //    Console.WriteLine("It's a lovely day");
+            //}
+            //else
+            //{
+            //    // over 30
+            //    Console.WriteLine("It's finally time for shorts");
+            //}
+
+
+            //practice logically operators
+            string inputTemp;
+            Console.Write("Enter an integer:\t");
+            inputTemp = Console.ReadLine();
+            int number = int.Parse(inputTemp);
+
+            // && test
+            // all conditions MUST be true to execute the true path
+            // if any of your conditions are false, execute the false path
+            if((number % 2 == 0) && (number % 3 == 0))
             {
-                //below 0
-                Console.WriteLine("It's freezing out");
-            }
-            else if(CelsiusTemperature <= 15)
-            {
-                // 0 (implied) to 15
-                Console.WriteLine("Wear a jacket");
-            }
-            else if (CelsiusTemperature <= 30)
-            {
-                //  16 (implied) to 30
-                Console.WriteLine("It's a lovely day");
+                Console.WriteLine($"{number} is divisible by 2 and 3");
             }
             else
             {
-                // over 30
-                    Console.WriteLine("It's finally time for shorts");
+                Console.WriteLine($"{number} is not divisible by 2 and 3");
             }
 
-            //recode as a range
-            if (CelsiusTemperature < 0)
+            // || test
+            // One of the conditions MUST be true to execute the true path
+            // if all of your conditions are false, execute the false path
+            if ((number % 2 == 0) || (number % 3 == 0))
             {
-                //below 0
-                Console.WriteLine("It's freezing out");
-            }
-            else if ((CelsiusTemperature >= 0) && (CelsiusTemperature <= 15))
-            {
-                //0 (explictive) to 15
-                Console.WriteLine("Wear a jacket");
-            }
-            else if ((CelsiusTemperature >= 16) && (CelsiusTemperature <= 30))
-            {
-                // 16  (explicitive) to 30
-                Console.WriteLine("It's a lovely day");
+                Console.WriteLine($"{number} is divisible by 2 or 3");
             }
             else
             {
-                // over 30
-                Console.WriteLine("It's finally time for shorts");
+                Console.WriteLine($"{number} is not divisible by 2 or 3");
+            }
+
+            //combining && and ||
+            //when combining combining conditions it is very important that you
+            //      comhining conditions in a way that matches you desired
+            //      testing
+            //to do this use (...)
+
+            //conditions within (...) are done 1st
+            //Yes
+            // T || T && T
+            // F || T && T
+            // T || F && T ...
+            if ((number % 2 == 0 || number % 3 == 0) && number < 10)
+            {
+                Console.WriteLine($"{number} is divisible by 2 or 3 and number is less than 10");
+            }
+            else
+            {
+                Console.WriteLine($"{number} is not divisible by 2 or 3 and number not less than 10");
             }
         }//eoMain
     }//eop
