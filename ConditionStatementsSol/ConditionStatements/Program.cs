@@ -305,49 +305,94 @@ namespace ConditionStatements
             inputTemp = Console.ReadLine();
             int number = int.Parse(inputTemp);
 
-            // && test
-            // all conditions MUST be true to execute the true path
-            // if any of your conditions are false, execute the false path
-            if((number % 2 == 0) && (number % 3 == 0))
+            //// && test
+            //// all conditions MUST be true to execute the true path
+            //// if any of your conditions are false, execute the false path
+            //if((number % 2 == 0) && (number % 3 == 0))
+            //{
+            //    Console.WriteLine($"{number} is divisible by 2 and 3");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"{number} is not divisible by 2 and 3");
+            //}
+
+            //// || test
+            //// One of the conditions MUST be true to execute the true path
+            //// if all of your conditions are false, execute the false path
+            //if ((number % 2 == 0) || (number % 3 == 0))
+            //{
+            //    Console.WriteLine($"{number} is divisible by 2 or 3");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"{number} is not divisible by 2 or 3");
+            //}
+
+            ////combining && and ||
+            ////when combining combining conditions it is very important that you
+            ////      comhining conditions in a way that matches you desired
+            ////      testing
+            ////to do this use (...)
+
+            ////conditions within (...) are done 1st
+            ////Yes
+            //// T || T && T
+            //// F || T && T
+            //// T || F && T ...
+            //if ((number % 2 == 0 || number % 3 == 0) && number < 10)
+            //{
+            //    Console.WriteLine($"{number} is divisible by 2 or 3 and number is less than 10");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"{number} is not divisible by 2 or 3 and number not less than 10");
+            //}
+
+            //Case Structure
+            //examines a value/expression against another value in the == scenario
+            switch (number)
             {
-                Console.WriteLine($"{number} is divisible by 2 and 3");
+                case 1:
+                    {
+                        Console.WriteLine($"Case 1: You entered a number from 1 to 3: {number}");
+                        break; //break takes you to the next executable statement after the switch
+                    }
+                case 2:
+                    {
+                        Console.WriteLine($"Case 2: You entered a number from 1 to 3: {number}");
+                        break; //break takes you to the next executable statement after the switch
+                    }
+                case 3:
+                    {
+                        Console.WriteLine($"Case 3: You entered a number from 1 to 3: {number}");
+                        break; //break takes you to the next executable statement after the switch
+                    }
+                default:
+                    {
+                        //this last coding block is executed IF ALL other cases have failed
+                        Console.WriteLine($"Default: You entered a number outside of 1 to 3: {number}");
+                        break;
+                    }
+            }//eo switch
+
+            if (number == 1)
+            {
+                Console.WriteLine($"1 st IF in if-else-if");
             }
-            else
+            else if ( number == 2)
             {
-                Console.WriteLine($"{number} is not divisible by 2 and 3");
+                Console.WriteLine($"2nd IF in if-else-if");
+            }
+            else if ( number == 3)
+            {
+                Console.WriteLine($"3rd IF in if-else-if");
+            }
+                else
+            {
+                Console.WriteLine($"final else in if-else-if");
             }
 
-            // || test
-            // One of the conditions MUST be true to execute the true path
-            // if all of your conditions are false, execute the false path
-            if ((number % 2 == 0) || (number % 3 == 0))
-            {
-                Console.WriteLine($"{number} is divisible by 2 or 3");
-            }
-            else
-            {
-                Console.WriteLine($"{number} is not divisible by 2 or 3");
-            }
-
-            //combining && and ||
-            //when combining combining conditions it is very important that you
-            //      comhining conditions in a way that matches you desired
-            //      testing
-            //to do this use (...)
-
-            //conditions within (...) are done 1st
-            //Yes
-            // T || T && T
-            // F || T && T
-            // T || F && T ...
-            if ((number % 2 == 0 || number % 3 == 0) && number < 10)
-            {
-                Console.WriteLine($"{number} is divisible by 2 or 3 and number is less than 10");
-            }
-            else
-            {
-                Console.WriteLine($"{number} is not divisible by 2 or 3 and number not less than 10");
-            }
         }//eoMain
     }//eop
 }//eon
