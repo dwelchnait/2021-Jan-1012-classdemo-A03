@@ -74,34 +74,95 @@ namespace DecisionMakingProblems
             //}
 
             //Question 4
-            const decimal FIVEPERCENT = 0.05m;
-            const decimal SEVENPERCENT = 0.07m;
-            const decimal NINEPERCENT = 0.09m;
-            const decimal UPTOFIFTY = 50000.00m;
-            const decimal UPTOHUNDRED = 100000.0m;
-            decimal taxesDue = 0.0m;
+            //const decimal FIVEPERCENT = 0.05m;
+            //const decimal SEVENPERCENT = 0.07m;
+            //const decimal NINEPERCENT = 0.09m;
+            //const decimal UPTOFIFTY = 50000.00m;
+            //const decimal UPTOHUNDRED = 100000.0m;
+            //decimal taxesDue = 0.0m;
 
-            Console.Write("Enter your total income (ie 65345.67):\t");
-            inputTemp = Console.ReadLine();
-            decimal totalIncome = decimal.Parse(inputTemp);
-            if (totalIncome <= UPTOFIFTY)
-            {
-                taxesDue = totalIncome * FIVEPERCENT;
-                Console.WriteLine($"\n An Income of {Math.Round(totalIncome,2)} pays " +
-                    $"{Math.Round(taxesDue,2)} in taxes.");
-            }
-            else if (totalIncome <= UPTOHUNDRED)
-            {
-                taxesDue = ((totalIncome - UPTOFIFTY) * SEVENPERCENT) + 2500.0m;
-                Console.WriteLine($"\n An Income of {Math.Round(totalIncome, 2)} pays " +
-                    $"{Math.Round(taxesDue, 2)} in taxes.");
-            }
-            else
-            {
-                taxesDue = ((totalIncome - UPTOHUNDRED) * NINEPERCENT) + 6000.0m;
-                Console.WriteLine($"\n An Income of {Math.Round(totalIncome, 2)} pays " +
-                    $"{Math.Round(taxesDue, 2)} in taxes.");
-            }
+            //Console.Write("Enter your total income (ie 65345.67):\t");
+            //inputTemp = Console.ReadLine();
+            //decimal totalIncome = decimal.Parse(inputTemp);
+            //if (totalIncome <= UPTOFIFTY)
+            //{
+            //    taxesDue = totalIncome * FIVEPERCENT;
+            //    Console.WriteLine($"\n An Income of {Math.Round(totalIncome,2)} pays " +
+            //        $"{Math.Round(taxesDue,2)} in taxes.");
+            //}
+            //else if (totalIncome <= UPTOHUNDRED)
+            //{
+            //    taxesDue = ((totalIncome - UPTOFIFTY) * SEVENPERCENT) + 2500.0m;
+            //    Console.WriteLine($"\n An Income of {Math.Round(totalIncome, 2)} pays " +
+            //        $"{Math.Round(taxesDue, 2)} in taxes.");
+            //}
+            //else
+            //{
+            //    taxesDue = ((totalIncome - UPTOHUNDRED) * NINEPERCENT) + 6000.0m;
+            //    Console.WriteLine($"\n An Income of {Math.Round(totalIncome, 2)} pays " +
+            //        $"{Math.Round(taxesDue, 2)} in taxes.");
+            //}
+
+            //switch problems
+            //Console.WriteLine("Packages:\n");
+            //Console.WriteLine("Package A: 9.95/month; 10 hours; Over 2.00/hour\n");
+            //Console.WriteLine("Package B: 13.95/month; 20 hours; Over 1.00/hour\n");
+            //Console.WriteLine("Package C: 19.95/month; unlimited hours\n\n");
+            //Console.Write("Enter your Package choice (a, b, c)\t");
+            //string packageChoice = Console.ReadLine();
+            //int hoursUsed = 0;
+            //decimal billedAmount = 0.0m;
+            //if (packageChoice.ToUpper() == "A" || packageChoice.ToUpper() == "B")
+            //{
+            //    Console.Write("Enter your hours used:\t");
+            //    inputTemp = Console.ReadLine();
+            //    hoursUsed = int.Parse(inputTemp);
+            //}
+            //switch (packageChoice)
+            //{
+            //    case "a":
+            //    case "A":
+            //        {
+            //            if (hoursUsed > 10)
+            //            {
+            //                billedAmount = 9.95m + ((hoursUsed - 10) * 2.00m);
+            //            }
+            //            else
+            //            {
+            //                billedAmount = 9.95m;
+            //            }
+            //            break;
+            //        }
+            //    case "b":
+            //    case "B":
+            //        {
+            //            billedAmount = 13.95m;
+            //            if (hoursUsed > 20)
+            //            {
+            //                billedAmount += ((hoursUsed - 20) * 1.00m);
+            //            }
+
+            //            break;
+            //        }
+            //    case "c":
+            //    case "C":
+            //        {
+            //            billedAmount = 19.95m;
+            //            break;
+            //        }
+            //    default:
+            //        {
+            //            Console.WriteLine("\nInvalid package selection.");
+            //            break;
+            //        }
+            //}
+            //if (billedAmount > 0.0m)
+            //{
+            //    Console.WriteLine($"Your package {packageChoice} with {hoursUsed} will be" +
+            //        $" billed {Math.Round(billedAmount, 2)}");
+            //}
+
+
         }
     }
 }
