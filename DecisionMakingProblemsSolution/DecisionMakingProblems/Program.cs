@@ -14,6 +14,7 @@ namespace DecisionMakingProblems
             //int aNumber = int.Parse(inputTemp);
             //if (aNumber == 0)
             //{
+
             //    Console.WriteLine($"\nYour number {aNumber} is zero");
             //}
             //else if (aNumber > 0)
@@ -29,19 +30,19 @@ namespace DecisionMakingProblems
             //Console.Write("Enter your age in years:\t");
             //inputTemp = Console.ReadLine();
             //int yourAge = int.Parse(inputTemp);
-            //if (yourAge <= 6)
+            //if (yourAge <= 6)   // < 7 is the same as <= 6
             //{
             //    Console.WriteLine($"\nAdmission is Free");
             //}
-            //else if (yourAge <= 17)
+            //else if (yourAge >= 7 && yourAge <= 17)
             //{
             //    Console.WriteLine($"\nAdmission is $9.80");
             //}
-            //else if (yourAge <= 54)
+            //else if (yourAge < 55)
             //{
             //    Console.WriteLine($"\nAdmission is $11.35");
             //}
-            //else
+            //else 
             //{
             //    Console.WriteLine($"\nAdmission is $10.00.");
             //}
@@ -68,13 +69,13 @@ namespace DecisionMakingProblems
             //{
             //    Console.WriteLine($"\n {studentName} is mark of {studentMark} is a B");
             //}
-            //else 
+            //else
             //{
             //    Console.WriteLine($"\n {studentName} is mark of {studentMark} is a A");
             //}
 
             //Question 4
-            //const decimal FIVEPERCENT = 0.05m;
+            //const decimal FIVEPERCENT = 0.05m;  //the m indicates the value is a decimal
             //const decimal SEVENPERCENT = 0.07m;
             //const decimal NINEPERCENT = 0.09m;
             //const decimal UPTOFIFTY = 50000.00m;
@@ -84,11 +85,11 @@ namespace DecisionMakingProblems
             //Console.Write("Enter your total income (ie 65345.67):\t");
             //inputTemp = Console.ReadLine();
             //decimal totalIncome = decimal.Parse(inputTemp);
-            //if (totalIncome <= UPTOFIFTY)
+            //if (totalIncome <= 50000.00m)
             //{
             //    taxesDue = totalIncome * FIVEPERCENT;
-            //    Console.WriteLine($"\n An Income of {Math.Round(totalIncome,2)} pays " +
-            //        $"{Math.Round(taxesDue,2)} in taxes.");
+            //    Console.WriteLine($"\n An Income of {Math.Round(totalIncome, 2)} pays " +
+            //        $"{Math.Round(taxesDue, 2)} in taxes.");
             //}
             //else if (totalIncome <= UPTOHUNDRED)
             //{
@@ -112,15 +113,16 @@ namespace DecisionMakingProblems
             //string packageChoice = Console.ReadLine();
             //int hoursUsed = 0;
             //decimal billedAmount = 0.0m;
-            //if (packageChoice.ToUpper() == "A" || packageChoice.ToUpper() == "B")
+            //if (packageChoice.ToUpper() == "A" || 
+            //    (packageChoice == "B" || packageChoice == "b"))
             //{
             //    Console.Write("Enter your hours used:\t");
             //    inputTemp = Console.ReadLine();
             //    hoursUsed = int.Parse(inputTemp);
             //}
-            //switch (packageChoice)
+            //switch (packageChoice) //the is an equals (==)
             //{
-            //    case "a":
+            //    case "a":  //multiple cases is an logical || situation
             //    case "A":
             //        {
             //            if (hoursUsed > 10)
@@ -150,16 +152,25 @@ namespace DecisionMakingProblems
             //            billedAmount = 19.95m;
             //            break;
             //        }
-            //    default:
+            //    default:  //this is the last else in an if else-if structure
             //        {
             //            Console.WriteLine("\nInvalid package selection.");
             //            break;
             //        }
-            //}
+            //}//eo switch your break; takes the user to the end of switch
             //if (billedAmount > 0.0m)
             //{
-            //    Console.WriteLine($"Your package {packageChoice} with {hoursUsed} will be" +
-            //        $" billed {Math.Round(billedAmount, 2)}");
+            //    if (packageChoice.ToUpper().Equals("C")) // (packageChoice.ToUpper() =="C")
+            //    {
+            //        Console.WriteLine($"Your package {packageChoice} with unlimited hours will be" +
+            //      $" billed {Math.Round(billedAmount, 2)}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Your package {packageChoice} with {hoursUsed} hours will be" +
+            //      $" billed {Math.Round(billedAmount, 2)}");
+            //    }
+              
             //}
 
 
