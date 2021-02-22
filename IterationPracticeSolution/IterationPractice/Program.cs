@@ -93,7 +93,7 @@ namespace IterationPractice
             //    //}
             //    for (int loopCounter = aNumberLength - 1; loopCounter >= 0; loopCounter--) 
             //    {
-            //        Console.WriteLine($"{inputTemp.Substring(4, 1)}");
+            //        Console.WriteLine($"{inputTemp.Substring(loopcounter, 1)}");
             //    }
             //}
             //else
