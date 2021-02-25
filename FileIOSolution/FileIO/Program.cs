@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO; // clarifies the requirement for File I/0
+
+
+
 
 namespace FileIO
 {
@@ -9,51 +13,68 @@ namespace FileIO
         // entry point into your program execution
         static void Main(string[] args)
         {
+            //creating my own instance of the Program class
+            //instances are "personal" and not shared
+            //since the instance is not shared the static on the methods
+            //    are not needed.
+            Program app = new Program();
+            app.Run();
+        }
+       
+
+        void Run()
+        {
             /*
-             * process
-             * 
-             * this program will demonstrate methods, menu looping and various styles of File I/O
-             * 
-             * create a post-loop (do/while) to handle the menu
-             *      the menu will have 3 options, one for each type of File I/O style
-             * 
-             * methods will be used to obtain the file name to be read for this program
-             *      the methods will have no incoming parameter, will return a string datatype
-             *      
-             * the reading and display of the file will be placed in a separate method
-             *      the method will have a string incoming parameter, 
-             *      the method will not return anything (void datatype),
-             *      the method demonstrate error handling using Try/Catch/Final
-             *      
-             */
+            * process
+            * 
+            * this program will demonstrate methods, menu looping and various styles of File I/O
+            * 
+            * create a post-loop (do/while) to handle the menu
+            *      the menu will have 3 options, one for each type of File I/O style
+            * 
+            * methods will be used to obtain the file name to be read for this program
+            *      the methods will have no incoming parameter, will return a string datatype
+            *      
+            * the reading and display of the file will be placed in a separate method
+            *      the method will have a string incoming parameter, 
+            *      the method will not return anything (void datatype),
+            *      the method demonstrate error handling using Try/Catch/Final
+            *      
+            */
 
             string inputTemp;
-
+            string FullFilePathName = "";
             //post loop structure, used to control menu
             do
             {
                 Console.WriteLine("File I/O options:");
                 Console.WriteLine("a) Hard-coded file name.");
                 Console.WriteLine("b) Using Windows Environment (DeskTop, Documents, Download) path file name.");
-                Console.WriteLine("c) Using Openfile dialog to obtain file name.");
                 Console.WriteLine("x) Exit.\n");
                 Console.Write("Enter the menu option for File I/O");
                 inputTemp = Console.ReadLine();
-                switch(inputTemp.ToUpper())
+                switch (inputTemp.ToUpper())
                 {
                     case "A":
                         {
-
+                            //Hard coded file-name
+                            //
+                            // the calling statement
+                            //
+                            // [receiving variable =] MethodName([List of arguments]);
+                            //
+                            // on the calling statement your method's list of parameters
+                            //     are properly referred to as "list of arguments"
+                            //
+                            FullFilePathName = HardCodedFileName();
                             break;
                         }
                     case "B":
                         {
+                            FullFilePathName = WindowEnvironmentFileName();
                             break;
                         }
-                    case "C":
-                        {
-                            break;
-                        }
+
                     case "X":
                         {
                             Console.WriteLine("Thank you. Have a nice day.");
@@ -65,17 +86,18 @@ namespace FileIO
                             break;
                         }
                 }
-
+                if (string.IsNullOrEmpty(FullFilePathName))
+                {
+                    ProcessFile(FullFilePathName);
+                }
             } while (inputTemp.ToUpper() != "X");
-
-
         }
-       
+
         /*  Methods
          * 
          * Why????
          *    reduce code redundancy
-         *    break up your code into smaller managable pieces (modularizaton)
+         *    break up your code into smaller managable pieces (modularization)
          *    
          * Where do methods go?
          *    methods go into your program class
@@ -115,8 +137,8 @@ namespace FileIO
          *   
          *   What is a list of parameters?
          *   datatype parametername, datatype parametername, .....
-         */  
-        static string HardCodedFileName()
+         */
+        string HardCodedFileName()
         {
             //setup a path name to the folder on your machine that contains
             //   the file to be read
@@ -129,6 +151,26 @@ namespace FileIO
             //BECAUSE the method indicates a returned datatype of string (anything
             //    but void), the method REQUIRES a return xxxx; statement
             return Full_Path_Filename;
+        }
+
+        string WindowEnvironmentFileName()
+        {
+            //Using Environment.GetFolderPath allows the program to get to the
+            //  special folders of your Windows file system (DeskTop, Documents,
+            //   Download,..)
+            string myMachinePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //if you have a folder structure on your Desktop where the file is located
+            //   then add that path to the MachinePath
+            myMachinePath += @"\TempData\";
+            //Add the actual file name to the Full path
+            string Full_Path_Filename;
+            Full_Path_Filename = myMachinePath + @"OneColumn.txt";
+            return Full_Path_Filename;
+        }
+    
+        void ProcessFile(string fileName)
+        {
+
         }
     }
 }
