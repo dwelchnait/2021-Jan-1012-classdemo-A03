@@ -13,17 +13,7 @@ namespace FileIO
         // entry point into your program execution
         static void Main(string[] args)
         {
-            //creating my own instance of the Program class
-            //instances are "personal" and not shared
-            //since the instance is not shared the static on the methods
-            //    are not needed.
-            Program app = new Program();
-            app.Run();
-        }
-       
 
-        void Run()
-        {
             /*
             * process
             * 
@@ -51,7 +41,7 @@ namespace FileIO
                 Console.WriteLine("a) Hard-coded file name.");
                 Console.WriteLine("b) Using Windows Environment (DeskTop, Documents, Download) path file name.");
                 Console.WriteLine("x) Exit.\n");
-                Console.Write("Enter the menu option for File I/O");
+                Console.Write("Enter the menu option for File I/O\t");
                 inputTemp = Console.ReadLine();
                 switch (inputTemp.ToUpper())
                 {
@@ -67,6 +57,7 @@ namespace FileIO
                             //     are properly referred to as "list of arguments"
                             //
                             FullFilePathName = HardCodedFileName();
+                         
                             break;
                         }
                     case "B":
@@ -86,8 +77,16 @@ namespace FileIO
                             break;
                         }
                 }
-                if (string.IsNullOrEmpty(FullFilePathName))
+                //Console.WriteLine($"your full path name is {FullFilePathName}");
+
+                //pass a argument value into a method
+                if (!inputTemp.ToUpper().Equals("X"))
                 {
+                    //a calling statement which is supplying a single argument value
+                    //    to the method.
+                    //there is NO assignment operator which indicates a) nothing is
+                    //    being returned from the method OR b) a logic decision has
+                    //    been made to ignore any returned value
                     ProcessFile(FullFilePathName);
                 }
             } while (inputTemp.ToUpper() != "X");
@@ -138,22 +137,30 @@ namespace FileIO
          *   What is a list of parameters?
          *   datatype parametername, datatype parametername, .....
          */
-        string HardCodedFileName()
+        static string HardCodedFileName()
         {
+            //ANY locally create variables ARE DESTROYED when the method TERMINATES
+            //local variables have "scope" to the method they exist in
+
             //setup a path name to the folder on your machine that contains
             //   the file to be read
             string Folder_Pathname = @"E:\GitHub\CPSC-1012\FileProcessing\";
 
             //concatenate a file name to the pathname
             string Full_Path_Filename;
-            Full_Path_Filename = Folder_Pathname + @"OneColumn.txt";
+            //Full_Path_Filename = Folder_Pathname + @"OneColumn.txt";
+            //Full_Path_Filename = Folder_Pathname + @"TwoColumn.txt";
+            Full_Path_Filename = Folder_Pathname + @"BadFileDoesNotExist.txt";
 
             //BECAUSE the method indicates a returned datatype of string (anything
             //    but void), the method REQUIRES a return xxxx; statement
+            //the returned value is a physical copy of the contents of the variable
+            //    on the statement
+            //You may return ONLY one value.
             return Full_Path_Filename;
         }
 
-        string WindowEnvironmentFileName()
+        static string WindowEnvironmentFileName()
         {
             //Using Environment.GetFolderPath allows the program to get to the
             //  special folders of your Windows file system (DeskTop, Documents,
@@ -161,16 +168,87 @@ namespace FileIO
             string myMachinePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             //if you have a folder structure on your Desktop where the file is located
             //   then add that path to the MachinePath
-            myMachinePath += @"\TempData\";
+            myMachinePath += @"\CPSC1012-FileIO\";
             //Add the actual file name to the Full path
             string Full_Path_Filename;
-            Full_Path_Filename = myMachinePath + @"OneColumn.txt";
+            //Full_Path_Filename = myMachinePath + @"OneColumn.txt";
+            Full_Path_Filename = myMachinePath + @"TwoColumn.txt";
             return Full_Path_Filename;
         }
     
-        void ProcessFile(string fileName)
+        static void ProcessFile(string paramFullFilePathName)
         {
+            //the parameter on the method header SHOULD be treated as a local variable
+            //DO NOT redeclare parameter variable as local variables
+            //If your parameter variable is a VALUE type variable then the name
+            //   given to the passing of data into this method is called "Pass By Value"
 
+            //Pass By Value
+            //a physical copy of the data from the call statement is passed into
+            //    the parameter variable
+
+            //Read the contents of a single column record from a file
+            //The number of records on the file is unknown
+            //Include User Friendly Error handling
+
+            int records = 0;
+           
+                //StreamReader is used to create a "pipeline" to your physical file
+                //The StreamReader is one of the System.IO classes
+                //your needs to create (request) an "instance" of the class
+                //syntax is datatype (classname) StreamReader
+                //creating the instance: new theclassname([list of parameters])
+                //    the parameter required is the complete file path name
+            StreamReader reader = null;
+
+            //User Friendly Error handling
+            //use the structure called Try/Catch[/Finally]
+            //syntax structure
+            //try
+            //{
+            //   coding to try and execute
+            //}
+            //catch (Exception ex)
+            //{
+            //   code use to handle the run time error
+            //}
+            //[finally
+            //{
+            //  code to execute whether there is no error or if there was an error
+            //}]
+            try
+            { 
+                reader = new StreamReader(paramFullFilePathName);
+
+                //logic of your program
+                string readline = "";
+                //read the first record from your StreamReader pipeline
+                readline = reader.ReadLine();
+                //your program will know when you have reached the end of the file
+                //   when it receives a null value from the StreamReader method .ReadLine()
+                //use pre-test loop
+                while (readline != null)
+                {
+                    //a line has been returned from the physical file
+                    records++;
+                    Console.WriteLine($"Contents of file record\t{readline}");
+                    //read the next line in the file
+                    readline = reader.ReadLine();
+                }
+                Console.WriteLine($"\nYou read {records} records");
+            }
+            catch (Exception ex)
+            {
+                //display a message indicating the problem
+                Console.WriteLine($"You had a problem reading the file. \nError:\t{ex.Message}");
+            }
+            finally
+            {
+                //due to the fact that we are reading a file
+                //the file must be closed when you have finished reading all that you
+                //   desire
+                reader.Close();
+            }
         }
     }
 }
