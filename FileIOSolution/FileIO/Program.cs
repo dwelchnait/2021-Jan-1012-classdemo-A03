@@ -32,17 +32,12 @@ namespace FileIO
             *      
             */
 
-            string inputTemp;
-            string FullFilePathName = "";
+            string inputTemp ="";
+            string FullFilePathName ="";
             //post loop structure, used to control menu
             do
             {
-                Console.WriteLine("File I/O options:");
-                Console.WriteLine("a) Hard-coded file name.");
-                Console.WriteLine("b) Using Windows Environment (DeskTop, Documents, Download) path file name.");
-                Console.WriteLine("x) Exit.\n");
-                Console.Write("Enter the menu option for File I/O\t");
-                inputTemp = Console.ReadLine();
+                inputTemp = MenuPrompt();  //a method containing the menu prompts
                 switch (inputTemp.ToUpper())
                 {
                     case "A":
@@ -65,7 +60,11 @@ namespace FileIO
                             FullFilePathName = WindowEnvironmentFileName();
                             break;
                         }
-
+                    case "C":
+                        {
+                            WriteToFile();
+                            break;
+                        }
                     case "X":
                         {
                             Console.WriteLine("Thank you. Have a nice day.");
@@ -80,7 +79,7 @@ namespace FileIO
                 //Console.WriteLine($"your full path name is {FullFilePathName}");
 
                 //pass a argument value into a method
-                if (!inputTemp.ToUpper().Equals("X"))
+                if (!(inputTemp.ToUpper().Equals("X") || inputTemp.ToUpper().Equals("C")))
                 {
                     //a calling statement which is supplying a single argument value
                     //    to the method.
@@ -150,7 +149,8 @@ namespace FileIO
             string Full_Path_Filename;
             //Full_Path_Filename = Folder_Pathname + @"OneColumn.txt";
             //Full_Path_Filename = Folder_Pathname + @"TwoColumn.txt";
-            Full_Path_Filename = Folder_Pathname + @"BadFileDoesNotExist.txt";
+            Full_Path_Filename = Folder_Pathname + @"VariableColums.txt";
+            //Full_Path_Filename = Folder_Pathname + @"BadFileDoesNotExist.txt";
 
             //BECAUSE the method indicates a returned datatype of string (anything
             //    but void), the method REQUIRES a return xxxx; statement
@@ -231,7 +231,31 @@ namespace FileIO
                 {
                     //a line has been returned from the physical file
                     records++;
-                    Console.WriteLine($"Contents of file record\t{readline}");
+                    Console.WriteLine($"\nContents of file record\t{readline}");
+
+                    //this code demonstrates a technique to handle multiple values
+                    //   on a single record which are separated by the comma (',') character
+                    //this technique uses
+                    //   a) the string method .Split('delimiter')
+                    //   b) the pre-test loop called foreach()
+                    //a file with records containing multiple value separated by a comma
+                    //   is often referred to as  CSV file (Comma Separate Values)
+                    int columncounter = 0;
+                    //the foreach loop is nice because
+                    //   a) handles an unknown number of times for looping
+                    //   b) the while condition is embedded within the loop and is 
+                    //          handled as "is there any more to do?"
+                    //   c) stops automatically if there is no more to do
+                    //   d) the "item" (data) to process is localed in the local loop
+                    //          variable declare in the foreach syntax. In this example
+                    //          the local loop variable is string value
+                    //   e) the "in" variable specifies the data source location
+                    foreach(string value in readline.Split(','))
+                    {
+                        columncounter++;
+                        Console.WriteLine($"Column {columncounter} contains the value {value}");
+                    }
+
                     //read the next line in the file
                     readline = reader.ReadLine();
                 }
@@ -248,6 +272,52 @@ namespace FileIO
                 //the file must be closed when you have finished reading all that you
                 //   desire
                 reader.Close();
+            }
+        }
+    
+        static string MenuPrompt()
+        {
+            string inputTempLocal = "";
+            Console.WriteLine("File I/O options:");
+            Console.WriteLine("a) Hard-coded file name.");
+            Console.WriteLine("b) Using Windows Environment (DeskTop, Documents, Download) path file name.");
+            Console.WriteLine("c) Writing to a file.");
+            Console.WriteLine("x) Exit.\n");
+            Console.Write("Enter the menu option for File I/O\t");
+            inputTempLocal = Console.ReadLine();
+            return inputTempLocal;
+        }
+
+        static void WriteToFile()
+        {
+            string PathName = @"E:\\GitHub\\CPSC-1012\\";
+            string FullPathName = PathName + @"NewFile.txt";
+            // declare "pipeline" variable to the output file
+            StreamWriter writer;
+
+            // create the pipeline
+            //  a) the file path name
+            //  b) a true or false indicate type of appending
+            //      true: append to an existing file or create the file if it does not exist
+            //      false: recreate the file as a new file (overwrite of existing file if the
+            //             file) 
+            try  //user friendly error handling
+            {
+                writer = new StreamWriter(FullPathName, false);
+                Random rnd = new Random(); //setting up the random number generate variable
+                int linesout = rnd.Next(1, 6); //desire numbers 1 through 5
+                for (int looper = 0; looper < linesout; looper++)  //fixed number of iterations
+                {
+                    //writing a line to your file
+                    // NOTE: the \n at the end of the string to force the next line in the file
+                    writer.Write($"line {looper}, terry\n");
+                }
+                //remember to close the file when you are finished.
+                writer.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n\nError: {ex.Message}\n\n");
             }
         }
     }
