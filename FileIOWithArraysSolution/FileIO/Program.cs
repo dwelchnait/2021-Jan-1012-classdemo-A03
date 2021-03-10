@@ -8,7 +8,9 @@ namespace FileIO
         static void Main(string[] args)
         {
             //your code goes here
-
+            const int ARRAYSIZE = 100;
+            int logicalSize = 0;
+            int[] Marks = new int[ARRAYSIZE];
 
             string inputTemp ="";
             string FullFilePathName ="";
@@ -20,12 +22,15 @@ namespace FileIO
                     case "A":
                         {
                             FullFilePathName = HardCodedFileName();
-                            ProcessFile(FullFilePathName);
+                            logicalSize = ProcessFile(FullFilePathName,Marks,ARRAYSIZE);
                             break;
                         }
                     case "B":
                         {
                             //your code goes here
+                            //pass the array to the method along with the number of active
+                            //  elements in the array (logical size)
+                            DisplayArray(Marks, logicalSize);
                             break;
                         }
                     case "C":
@@ -59,9 +64,11 @@ namespace FileIO
             return Full_Path_Filename;
         }
 
-        static void ProcessFile(string paramFullFilePathName)
+        static int ProcessFile(string paramFullFilePathName, int[] Marks, int physicalSize)
         {
-
+            //each record will represent an elment in the array Marks
+            //therefore the variable "records" will represent the logical number of 
+            //  elements used in the array
             int records = 0;
             StreamReader reader = null;
             try
@@ -71,13 +78,31 @@ namespace FileIO
                 readline = reader.ReadLine();
                 while (readline != null)
                 {
-                    records++;
+                   
                     Console.WriteLine($"\nContents of file record\t{readline}");
                     int columncounter = 0;
                     foreach(string value in readline.Split(','))
                     {
                         columncounter++;
                         Console.WriteLine($"Column {columncounter} contains the value {value}");
+
+                        //add the data to the appropriate array
+                        //Concerns:
+                        //  is there enough room in the array for another value
+                        //  does the string input need to be converted
+                        if (records < physicalSize)
+                        {
+                            //there is room for the value in the array
+                            //ADD the value to the array
+                            Marks[records] = int.Parse(value);
+                            records++;
+                        }
+                        else
+                        {
+                            // creating your own error to handle a "logical" run problem
+                            // this is NOT bad logic, it is a user generated problem
+                            throw new Exception("Insufficient room for more data in the program");
+                        }
                     }
                     readline = reader.ReadLine();
                 }
@@ -91,6 +116,7 @@ namespace FileIO
             {
                 reader.Close();
             }
+            return records;
         }
     
         static string MenuPrompt()
@@ -98,7 +124,7 @@ namespace FileIO
             string inputTempLocal = "";
             Console.WriteLine("File I/O options:");
             Console.WriteLine("a) Hard-coded file name.");
-            Console.WriteLine("b) Using Windows Environment (DeskTop, Documents, Download) path file name.");
+            Console.WriteLine("b) Display array");
             Console.WriteLine("c) Writing to a file.");
             Console.WriteLine("x) Exit.\n");
             Console.Write("Enter the menu option for File I/O\t");
@@ -126,6 +152,58 @@ namespace FileIO
             {
                 Console.WriteLine($"\n\nError: {ex.Message}\n\n");
             }
+        }
+    
+        static void DisplayArray(int[] Marks, int logicalSize)
+        {
+            //Traverse the array from the beginning to the end
+            //write each element contents to the screen
+
+            //with the while, YOU are responsible for all control of looping
+            //  ensuring that you do NOT do beyound the contents of the array
+            //the index is the position position within the array (which element position)
+            //      calculation of element position is  arrayAddress + (index * element size)
+            //the logical size is a natural count of the number of active elements in the array
+
+            //int index = 0;
+            //while(index < logicalSize)
+            //{
+            //    Console.WriteLine($"Element at index {index} has a value of {Marks[index]}");
+            //    index++;
+            //}
+
+            //all of the separate lines of looping count used for the while loop exists in the
+            //  setup for the for loop
+            for (int index = 0; index < logicalSize; index++)
+            {
+                Console.WriteLine($"Element at index {index} has a value of {Marks[index]}");
+            }
+
+            // all control of the loop is embedded within the software of foreach
+            // foreach:
+            //      checks to see if there is anything to process
+            //      process the collection (array) from the start to the end!!!!!!!!
+            //      after an iteration, automatically checks to see if another iteration is 
+            //              required
+            //      stops automatically when there is nothing more to process
+            //
+            // the foreach isolates a single instance of your collection using a placeholder 
+            //      variable
+            // during the processing, use the placeholder to obtain the contents of the 
+            //      element in your array that is currently being processed
+            //
+            //WARNING!!!!
+            // the foreach loop with process your ENTIRE collect INCLUDING any unused array
+            //      elements.
+            // if you wish to used this looping and ONLY process the used array element
+            //      YOU MUST still supply logic to NOT do certain processing for unused elements
+            //
+            //foreach (int CurrentElement in Marks)
+            //{
+            //    Console.WriteLine($"Element has a value of {CurrentElement}");
+            //}
+
+
         }
     }
 }
