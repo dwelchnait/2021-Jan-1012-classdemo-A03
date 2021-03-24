@@ -40,8 +40,8 @@ namespace IntroToObjects
         //              your private data member (validation)
         //   public datatype propertyname
         //   {
-        //      get { .....}
-        //      [set {......}]
+        //      get { .....}  also known as accessor
+        //      [set {......}] also known as mutator
         //          on the set, your incoming data is referenced using the keyword: value
         //    }
         public string DriverLicense
@@ -68,7 +68,9 @@ namespace IntroToObjects
         //Fully Implemented Property examples
         public double CashBills
         {
+            //accessor
             get { return _CashBills; }
+            //mutator
             set { _CashBills += value; }
         }
         public double CashCoins
@@ -157,13 +159,22 @@ namespace IntroToObjects
                 //logic to change cash bills and coins
                 if (amount < 5.00)
                 {
-                    CashCoins -= amount;
+                    if (CashCoins > amount)
+                    {
+                        CashCoins = -amount;
+                        valid = true;
+                    }
+                    
                 }
                 else
                 {
-                    CashBills -= amount;
+                    if (CashBills > amount)
+                    {
+                        CashBills = -amount;
+                        valid = true;
+                    }
                 }
-                valid = true;
+                
             }
             return valid;
         }
