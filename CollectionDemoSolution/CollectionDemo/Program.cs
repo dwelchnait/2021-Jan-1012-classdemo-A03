@@ -23,6 +23,7 @@ namespace CollectionDemo
             List<Wall> Walls = new List<Wall>();
             Walls = InputWallsForRoom();
             List<Opening> Openings = new List<Opening>();
+
         }
 
         static void BasicsOfLists()
@@ -87,7 +88,7 @@ namespace CollectionDemo
             bool finished = false;
             do
             {
-                //to create an instance of the class Wall, use the
+                //to create a NEW UNIQUE instance of the class Wall, use the
                 //  new operator and the class name.
                 //the new opertor will use the Wall default constructor
                 aWall = new Wall();
