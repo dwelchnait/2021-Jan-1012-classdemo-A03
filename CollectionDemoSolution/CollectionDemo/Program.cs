@@ -9,10 +9,20 @@ namespace CollectionDemo
 {
     class Program
     {
+        //entry point into your console application software.
         static void Main(string[] args)
         {
             //BasicsOfLists();
 
+            //using composite classes
+            //class Room
+            //  within the class: Wall, Opening, List<T>
+
+            //create a collection of Walls for the room
+            //when the List<T> is created, the instance will be empty (Count==0)
+            List<Wall> Walls = new List<Wall>();
+            Walls = InputWallsForRoom();
+            List<Opening> Openings = new List<Opening>();
         }
 
         static void BasicsOfLists()
@@ -63,6 +73,86 @@ namespace CollectionDemo
                 //    placeholder (variable)
                 WriteLine($"the list item is {listElement} ");
             }
+        }
+    
+        static List<Wall> InputWallsForRoom()
+        {
+            //declare a variable capiable of holding an instance of
+            //  the class Wall;
+            Wall aWall = null;
+            //you need to create a local List<T> BECAUSE
+            //  you DID NOT pass in the collection to be filled
+            //you will return the local List<T>
+            List<Wall> inputWalls = new List<Wall>();
+            bool finished = false;
+            do
+            {
+                //to create an instance of the class Wall, use the
+                //  new operator and the class name.
+                //the new opertor will use the Wall default constructor
+                aWall = new Wall();
+                //obtain the width for the wall
+                aWall.Width = GetPositiveDouble("Enter the width of your wall:");
+                //obtain the height for the wall
+                aWall.Height = GetPositiveDouble("Enter the height of your wall:");
+                //add the instance to the wall collection
+                inputWalls.Add(aWall);
+                if (GetNonEmptyString("Do you have another wall, Y or N.").ToUpper().Equals("N"))
+                {
+                    finished = true;
+                }
+            } while (!finished);
+            //return the wall collection
+            return inputWalls;
+        }
+
+        static double GetPositiveDouble(string prompt)
+        {
+            double number = 0;
+            string inputTemp = null;
+            bool valid = false;
+            do
+            {
+                Write($"{prompt}\t");
+                inputTemp = ReadLine();
+                if (double.TryParse(inputTemp,out number))
+                {
+                    if (number > 0)
+                    {
+                        valid = true;
+                    }
+                    else
+                    {
+                        WriteLine($"Input is invalid {inputTemp}. Not a positive number. Try again");
+                    }
+                   
+                }
+                else
+                {
+                    WriteLine($"Input is invalid {inputTemp}. Try again");
+                }
+            } while (!valid);
+            return number;
+        }
+
+        static string GetNonEmptyString(string prompt)
+        {
+            string inputTemp = null;
+            bool valid = false;
+            do
+            {
+                Write($"{prompt}\t");
+                inputTemp = ReadLine();
+                if (!string.IsNullOrEmpty(inputTemp))
+                {
+                        valid = true;
+                }
+                else
+                {
+                    WriteLine($"Input is empty. Try again to empty a string of characters.");
+                }
+            } while (!valid);
+            return inputTemp;
         }
     }
 }
