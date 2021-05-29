@@ -13,7 +13,7 @@ namespace IntroToObjects
         //data members
         //  a data member is a piece of data
         //  the data needs to be a valid datatype
-        //  Typically, these variables are private to the class
+        //  Typically, these variables are private fields to the class
         private double _CashBills;
         private double _CashCoins;
         private string _DriverLicense;

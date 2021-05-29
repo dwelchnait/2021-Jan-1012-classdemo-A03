@@ -17,7 +17,7 @@ namespace ArraySamples
                             //    which has NOT YET been assigned size
                             //this variable CANNOT hold data at this time
 
-            dieFace = new int[6]; //This statement assigns an area in memeory
+            dieFace = new int[6]; //This statement assigns an area in memory
                                   //  of 6 int size elements
                                   //this variable CAN hold data at this time
 
@@ -41,7 +41,13 @@ namespace ArraySamples
             //what is needed to know: size of the array
             //How does one reference a particular element in the array: by index (starts at 0)
             //how does one change index: use iteration (looping) logic
-
+            //
+            // since an array is a class, you could use properties within the class to determine
+            //   the physical size of the class
+            // this property is called .Length
+            //
+            // for (int index = 0; index < die2Face.Length; index++)
+            //
             //for (int index = 0; index < 6; index++)
             //{
             //    Console.WriteLine($"Default value {die2Face[index]}  Assigned value " +
@@ -50,7 +56,7 @@ namespace ArraySamples
             //}
 
             string inputTemp = "n";
-            //Random rnd = new Random();
+            Random rnd = new Random();
             //do
             //{
             //    //die3Face and dieFaceName are arrays
